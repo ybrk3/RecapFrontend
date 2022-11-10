@@ -10,8 +10,8 @@
       <div class="card" style="width: 18rem;">
         <img [src] ="getCarImage(carDetail)" class="card-img-top" alt="..." width="150" height="200">
         <div class="card-body">
-          <h4 class="card-title text-center">{{carDetail.brandName |uppercase}} </h4>
-          
+          <h3 class="card-title text-center">{{carDetail.brandName |uppercase}} </h3>
+          <h6 class="card-title text-center">{{carDetail.carName|uppercase}} </h6> 
         </div>
         <ul class="list-group list-group-flush text-center text-bolder">
           <li class="list-group-item"><i><b>Model Yılı</b></i> | {{carDetail.modelYear}}</li>
