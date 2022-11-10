@@ -5,7 +5,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Car } from 'src/app/models/car';
 import { CarDetail } from 'src/app/models/car-detail';
+import { CarImage } from 'src/app/models/car-image';
 import { ListResponseModel } from 'src/app/models/listResponseModel';
+import { CarImageService } from 'src/services/car-image.service';
 import { CarService } from 'src/services/car.service';
 
 @Component({
@@ -16,11 +18,13 @@ import { CarService } from 'src/services/car.service';
 export class CarComponent implements OnInit {
   cars: Car[] = [];
   carDetails: CarDetail[] = [];
+  carImage:CarImage[]=[];
   dataLoaded = false;
 
   constructor(
     private carService: CarService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private carImageService:CarImageService
   ) {}
 
   ngOnInit(): void {
@@ -59,5 +63,11 @@ export class CarComponent implements OnInit {
       this.carDetails = response.data;
       this.dataLoaded = true;
     });
+  }
+  getImageByCarId(carId:number){
+    this.carImageService.getImagesByCarId(carId).subscribe(response => {
+      this.carImage=response.data;
+    });
+    
   }
 }
