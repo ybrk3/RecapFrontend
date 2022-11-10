@@ -20,6 +20,7 @@ export class CarComponent implements OnInit {
   carDetails: CarDetail[] = [];
   carImage:CarImage[]=[];
   dataLoaded = false;
+  imageUrl = "https://localhost:7082"
 
   constructor(
     private carService: CarService,
@@ -64,10 +65,16 @@ export class CarComponent implements OnInit {
       this.dataLoaded = true;
     });
   }
-  getImageByCarId(carId:number){
-    this.carImageService.getImagesByCarId(carId).subscribe(response => {
-      this.carImage=response.data;
-    });
-    
-  }
+  getCarImage(carDetail:CarDetail){
+    if (carDetail.imagePath == null) {
+      let path = this.imageUrl + "/images/carDefault.png"
+      return path;
+
+    }
+    else{
+      let path = this.imageUrl + carDetail.imagePath;
+      return path;
+    }
 }
+  }
+
