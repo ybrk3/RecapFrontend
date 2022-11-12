@@ -18,23 +18,23 @@ import { CarService } from 'src/services/car.service';
 export class CarComponent implements OnInit {
   cars: Car[] = [];
   carDetails: CarDetail[] = [];
-  carImage:CarImage[]=[];
+  carImage: CarImage[] = [];
   dataLoaded = false;
-  imageUrl = "https://localhost:7082"
+  imageUrl = 'https://localhost:7082';
 
   constructor(
     private carService: CarService,
     private activatedRoute: ActivatedRoute,
-    private carImageService:CarImageService
+    private carImageService: CarImageService
   ) {}
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
       if (params['brandId']) {
         this.getCarDetailsByBrand(params['brandId']);
-      } else if(params["id"]) {
-        this.getCarDetailsByColor(params["id"]);
-      } else{
+      } else if (params['id']) {
+        this.getCarDetailsByColor(params['id']);
+      } else {
         this.getCarDetails();
       }
     });
@@ -65,16 +65,13 @@ export class CarComponent implements OnInit {
       this.dataLoaded = true;
     });
   }
-  getCarImage(carDetail:CarDetail){
+  getCarImage(carDetail: CarDetail) {
     if (carDetail.imagePath == null) {
-      let path = this.imageUrl + "/images/carDefault.png"
+      let path = this.imageUrl + '/images/carDefault.png';
       return path;
-
-    }
-    else{
+    } else {
       let path = this.imageUrl + carDetail.imagePath;
       return path;
     }
-}
   }
-
+}
