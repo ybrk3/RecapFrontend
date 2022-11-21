@@ -1,13 +1,52 @@
-<div class="container text-center">
-<ul class="list-group list-group-flush">
-  <li (click)="reset()" routerLink="/cars" [class]="getAllColorClass()"><b>Colors</b></li>
-  <li
-    (click)="setCurrentColor(color)"
-    routerLink="/cars/colors/{{color.id}}"
-    *ngFor="let color of colors"
-    [class]="getCurrentColorClass(color)"
-  >
-    {{ color.colorName }}
-  </li>
-</ul>
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button
+        (click)="reset()"
+        routerLink="/cars"
+        [class]="getAllColorClass()"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseOne"
+        aria-expanded="true"
+        aria-controls="collapseOne"
+      >
+        <b> Colors</b>
+      </button>
+    </h2>
+    <div
+      id="collapseOne"
+      class="accordion-collapse collapse show"
+      aria-labelledby="headingOne"
+      data-bs-parent="#accordionExample"
+    >
+      <div class="accordion-body">
+        <li
+          (click)="setCurrentColor(color)"
+          routerLink="/cars/colors/{{ color.id }}"
+          *ngFor="let color of colors"
+          [class]="getCurrentColorClass(color)"
+        >
+          <div class="input-group mb-3">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="{{ color.colorName }}"
+              aria-label="Recipient's username"
+              aria-describedby="button-addon2"
+              readonly
+            />
+
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              id="button-addon2"
+            >
+              Filter
+            </button>
+          </div>
+        </li>
+      </div>
+    </div>
+  </div>
 </div>

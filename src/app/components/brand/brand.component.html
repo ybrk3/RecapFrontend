@@ -6,18 +6,57 @@
   >
     <span class="visually-hidden">Loading...</span>
   </div>
-
-  <ul class="list-group list-group-flush">
-    <li (click)="reset()" routerLink="/cars"  [class]="getAllBrandClass()"><b>Brands</b></li>
-    <li
-      (click)="setCurrentBrand(brand)"
-      routerLink="/cars/brands/{{brand.brandId}}"
-      *ngFor="let brand of brands"
-      [class]="getCurrentBrandClass(brand)"
-    >
-      {{ brand.brandName }}
-    </li>
-  </ul>
 </div>
 
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button
+        (click)="reset()"
+        routerLink="/cars"
+        [class]="getAllBrandClass()"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseOne"
+        aria-expanded="true"
+        aria-controls="collapseOne"
+      >
+        <b> Brands</b>
+      </button>
+    </h2>
+    <div
+      id="collapseOne"
+      class="accordion-collapse collapse show"
+      aria-labelledby="headingOne"
+      data-bs-parent="#accordionExample"
+    >
+      <div class="accordion-body">
+        <li
+          (click)="setCurrentBrand(brand)"
+          routerLink="/cars/brands/{{ brand.brandId }}"
+          *ngFor="let brand of brands"
+          [class]="getCurrentBrandClass(brand)"
+        >
+          <div class="input-group mb-3">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="{{ brand.brandName }}"
+              aria-label="Recipient's username"
+              aria-describedby="button-addon2"
+              readonly
+            />
 
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              id="button-addon2"
+            >
+              Filter
+            </button>
+          </div>
+        </li>
+      </div>
+    </div>
+  </div>
+</div>

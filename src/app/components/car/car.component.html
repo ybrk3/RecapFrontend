@@ -1,28 +1,62 @@
 <div class="container text-center">
-    <div *ngIf="dataLoaded==false" class="spinner-border text-secondary" role="status">
-        <span class="visually-hidden">Loading...</span>
-    </div>
+  <div
+    *ngIf="dataLoaded == false"
+    class="spinner-border text-secondary"
+    role="status"
+  >
+    <span class="visually-hidden">Loading...</span>
+  </div>
 </div>
 
-
+<div class="input-group mb-3">
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Enter Car Name"
+    aria-label="Recipient's username"
+    aria-describedby="basic-addon2"
+  />
+  <span class="input-group-text" id="basic-addon2"><b>Search</b></span>
+</div>
 <div class="row">
-    <div class="col-md-4" *ngFor = "let carDetail of carDetails">
-      <div class="card" style="width: 18rem;">
-        <img [src] ="getCarImage(carDetail)" class="card-img-top" alt="..." width="150" height="200">
-        <div class="card-body">
-          <h3 class="card-title text-center">{{carDetail.brandName |uppercase}} </h3>
-          <h6 class="card-title text-center">{{carDetail.carName|uppercase}} </h6> 
-        </div>
-        <ul class="list-group list-group-flush text-center text-bolder">
-          <li class="list-group-item"><i><b>Model Yılı</b></i> | {{carDetail.modelYear}}</li>
-          <li class="list-group-item"><i><b>Günlük Fiyat</b></i> | {{carDetail.dailyPrice | currency:"₺" }}</li>
-          <li class="list-group-item"><i><b>Aylık Fiyat</b></i> | {{carDetail.dailyPrice  |  currency:"₺"}}</li>
-  
-        </ul>
-        <div class="card-body text-center">
-          <a href="#" class="btn btn-outline-secondary"  routerLink = "/cars/car-detail-page/{{carDetail.carId}}">Detaya Git</a>
-        
-        </div>
+  <div class="col-md-4" *ngFor="let carDetail of carDetails">
+    <div class="card" style="width: 18rem">
+      <img
+        [src]="getCarImage(carDetail)"
+        class="card-img-top"
+        alt="..."
+        width="150"
+        height="200"
+      />
+      <div class="card-body">
+        <h3 class="card-title text-center">
+          {{ carDetail.brandName | uppercase }}
+        </h3>
+        <h6 class="card-title text-center">
+          {{ carDetail.carName | uppercase }}
+        </h6>
       </div>
-      <br>
+      <ul class="list-group list-group-flush text-center text-bolder">
+        <li class="list-group-item">
+          <i><b>Model Yılı</b></i> | {{ carDetail.modelYear }}
+        </li>
+        <li class="list-group-item">
+          <i><b>Günlük Fiyat</b></i> |
+          {{ carDetail.dailyPrice | currency: "₺" }}
+        </li>
+        <li class="list-group-item">
+          <i><b>Aylık Fiyat</b></i> | {{ carDetail.dailyPrice | currency: "₺" }}
+        </li>
+      </ul>
+      <div class="card-body text-center">
+        <a
+          href="#"
+          class="btn btn-outline-secondary"
+          routerLink="/cars/car-detail-page/{{ carDetail.carId }}"
+          >Detaya Git</a
+        >
+      </div>
     </div>
+    <br />
+  </div>
+</div>
