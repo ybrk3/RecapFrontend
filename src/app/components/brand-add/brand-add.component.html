@@ -5,14 +5,26 @@
       <div class="card-body">
         <form [formGroup]="brandAddForm">
           <div class="mb-3">
-            <label for="productName">Brand Name</label>
+            <label for="brandName">Brand Name</label>
             <div class="form-group">
               <input
                 type="text"
-                id="productName"
-                formControlName="productName"
+                id="brandName"
+                formControlName="brandName"
                 class="form-control"
-                placeholder="Ürün adı"
+                placeholder="Enter Brand Name "
+              />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="brandName">Brand Id</label>
+            <div class="form-group">
+              <input
+                type="text"
+                id="brandId"
+                formControlName="brandId"
+                class="form-control"
+                placeholder="Enter Brand Id "
               />
             </div>
           </div>

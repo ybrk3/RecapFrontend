@@ -5,7 +5,6 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 import { BrandService } from 'src/services/brand.service';
 
 @Component({
@@ -17,8 +16,7 @@ export class BrandAddComponent implements OnInit {
   brandAddForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
-    private brandService: BrandService,
-    private toastrService: ToastrService
+    private brandService: BrandService
   ) {}
 
   ngOnInit(): void {
@@ -27,28 +25,15 @@ export class BrandAddComponent implements OnInit {
   createBrandAddForm() {
     this.brandAddForm = this.formBuilder.group({
       brandName: ['', Validators.required],
+      brandId: ['', Validators.required],
     });
   }
   add() {
     if (this.brandAddForm.valid) {
       let productModel = Object.assign({}, this.brandAddForm.value);
-      this.brandService.add(productModel).subscribe(
-        (response) => {
-          this.toastrService.success(response.message, 'Done!');
-        },
-        (responseError) => {
-          if (responseError.error.Errors.length > 0) {
-            for (let i = 0; i < responseError.error.Errors.length; i++) {
-              this.toastrService.error(
-                responseError.error.Errors[i].ErrorMessage,
-                'Validation Failure'
-              );
-            }
-          }
-        }
-      );
-    } else {
-      this.toastrService.error('Please fill all the form', 'Retry');
+      this.brandService.add(productModel).subscribe((response) => {
+        console.log(response);
+      });
     }
   }
 }
